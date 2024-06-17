@@ -13,13 +13,18 @@ const methods = [
 
 export const Example = () =>  {
   const [method, setMethod] = useState(methods[0]);
-  const [endpoint, setEndpoint] = useState('/admin/tokens');
+  const [endpoint, setEndpoint] = useState('https://swapi.dev/api/people/');
   const [res, setRes] = useState(null);
   const [status, setStatus] = useState<any>(null);
+
+  const [data, setData] = useState<any>(null)
+  const [user, setUser] = useState<any>()
+
 
   return (
     <div className="App">
       <h2>GitHub API mock playground</h2>
+      {user}
       <label>Method</label>
       <select value={method} onChange={e => setMethod(e.target.value)}>
         {methods.map(i => (
@@ -46,7 +51,7 @@ export const Example = () =>  {
       >
         fetch
       </button>
-
+      {data ? JSON.stringify(data,  null, 4) : null}
       {status && <div>Status: {status}</div>}
 
       <pre>
